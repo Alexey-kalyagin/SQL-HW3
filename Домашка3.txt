@@ -1,0 +1,30 @@
+/* Написать скрипт, возвращающий список имен (только firstname) пользователей
+без повторений в алфавитном порядке. [ORDER BY] */
+
+SELECT * FROM users
+ORDER BY firstname;
+
+/* Выведите количество мужчин старше 35 лет [COUNT]. */
+
+SELECT COUNT(*) FROM profiles
+WHERE gender = 'm' and birthday < '1988-02-25 00:00:00';
+
+/* Сколько заявок в друзья в каждом статусе? (таблица friend_requests) [GROUP BY] */
+
+SELECT status, count(*) AS status_count
+FROM friend_requests
+GROUP BY status;
+
+/* Выведите номер пользователя,
+который отправил больше всех заявок в друзья (таблица friend_requests) [LIMIT].*/
+
+SELECT initiator_user_id,COUNT(initiator_user_id) AS Maximus
+FROM friend_requests
+GROUP BY initiator_user_id
+ORDER BY Maximus DESC
+LIMIT 1;
+
+/* Выведите названия и номера групп, имена которых состоят из 5 символов [LIKE]. */
+
+SELECT name FROM communities
+WHERE name LIKE '_____';
